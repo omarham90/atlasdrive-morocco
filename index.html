@@ -20,7 +20,6 @@
     }
 
     * { box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -31,8 +30,6 @@
     }
 
     button, input, select { font: inherit; }
-
-    button, a { -webkit-tap-highlight-color: transparent; }
 
     .container {
       width: min(1120px, 92%);
@@ -57,7 +54,7 @@
       text-decoration: none;
       font-size: 21px;
       font-weight: 800;
-      letter-spacing: -0.7px;
+      letter-spacing: -.7px;
     }
 
     .brand span { color: var(--lime); }
@@ -134,7 +131,7 @@
       padding: 13px 10px;
       border: 1px solid var(--border);
       border-radius: 9px;
-      background: #fff;
+      background: white;
       color: var(--green);
     }
 
@@ -229,7 +226,6 @@
     }
 
     .airport-info h3 { margin: 6px 0; font-size: 21px; }
-
     .airport-info small { color: #e0e7e1; }
 
     .results-section { background: #eeefe7; }
@@ -243,11 +239,7 @@
       margin: 25px 0;
     }
 
-    .filters {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
+    .filters { display: flex; gap: 8px; flex-wrap: wrap; }
 
     .filter-btn {
       border: 1px solid #d5d9d0;
@@ -385,7 +377,6 @@
     }
 
     .benefit .symbol { font-size: 27px; }
-
     .benefit h3 { margin: 13px 0 8px; }
 
     .benefit p, .faq p {
@@ -467,7 +458,7 @@
     <section class="hero">
       <div class="container">
         <div class="eyebrow">Explore Morocco on your terms</div>
-        <h1>Your journey.<br> Your Morocco.</h1>
+        <h1>Your journey.<br>Your Morocco.</h1>
         <p>
           Find your ideal rental car for your Moroccan adventure.
           Start at the airport, compare your options and hit the road.
@@ -546,7 +537,7 @@
         </button>
 
         <button class="airport" data-airport="AGA" type="button">
-          <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=700&q=80" alt="Coastal destination" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=700&q=80" alt="Agadir coast" loading="lazy">
           <span class="airport-info">
             <span class="airport-code">AGA</span>
             <h3>Agadir</h3>
@@ -563,8 +554,9 @@
           </span>
         </button>
 
+        <!-- Updated Tangier image URL -->
         <button class="airport" data-airport="TNG" type="button">
-          <img src="https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?auto=format&fit=crop&w=700&q=80" alt="Northern Morocco" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?auto=format&fit=crop&w=700&q=80" alt="Tangier, Morocco" loading="lazy">
           <span class="airport-info">
             <span class="airport-code">TNG</span>
             <h3>Tangier</h3>
@@ -734,7 +726,6 @@
     const grid = document.getElementById("carGrid");
     const notice = document.getElementById("searchNotice");
 
-    // Set default dates.
     const today = new Date();
     const tomorrow = new Date(today);
     tomorrow.setDate(today.getDate() + 1);
@@ -775,7 +766,10 @@
       airportSelect.value = code;
 
       document.querySelectorAll(".airport").forEach(button => {
-        button.classList.toggle("selected", button.dataset.airport === code);
+        button.classList.toggle(
+          "selected",
+          button.dataset.airport === code
+        );
       });
 
       document.getElementById("resultsTitle").textContent =
@@ -787,7 +781,9 @@
     function renderCars() {
       let shown = cars.filter(car => {
         if (activeType === "all") return true;
-        if (activeType === "Automatic") return car.transmission === "Automatic";
+        if (activeType === "Automatic") {
+          return car.transmission === "Automatic";
+        }
         return car.type === activeType;
       });
 
@@ -800,7 +796,8 @@
         `${airports[currentAirport]} Airport · ${tripDays()} day(s) · Example prices in MAD`;
 
       if (!shown.length) {
-        grid.innerHTML = '<div class="empty">No cars match this filter. Try another category.</div>';
+        grid.innerHTML =
+          '<div class="empty">No cars match this filter. Try another category.</div>';
         return;
       }
 
@@ -833,7 +830,9 @@
     document.querySelectorAll(".airport").forEach(button => {
       button.addEventListener("click", () => {
         updateAirport(button.dataset.airport);
-        document.getElementById("cars").scrollIntoView({ behavior: "smooth" });
+        document.getElementById("cars").scrollIntoView({
+          behavior: "smooth"
+        });
       });
     });
 
@@ -860,7 +859,8 @@
 
       if (returnInput.value <= pickupInput.value) {
         notice.style.display = "block";
-        notice.textContent = "Please choose a return date after your pickup date.";
+        notice.textContent =
+          "Please choose a return date after your pickup date.";
         return;
       }
 
@@ -872,7 +872,9 @@
         `${pickupInput.value} to ${returnInput.value}, ` +
         `${tripDays()} day(s). These are demonstration results only; live availability is not connected yet.`;
 
-      document.getElementById("cars").scrollIntoView({ behavior: "smooth" });
+      document.getElementById("cars").scrollIntoView({
+        behavior: "smooth"
+      });
     });
 
     grid.addEventListener("click", event => {
@@ -883,7 +885,9 @@
       notice.textContent =
         `${button.dataset.car} is a demo listing. Live booking will be enabled after an affiliate partner is connected.`;
 
-      document.getElementById("searchForm").scrollIntoView({ behavior: "smooth" });
+      document.getElementById("searchForm").scrollIntoView({
+        behavior: "smooth"
+      });
     });
 
     document.getElementById("year").textContent = new Date().getFullYear();
