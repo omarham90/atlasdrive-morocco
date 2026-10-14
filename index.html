@@ -11,12 +11,10 @@
   <style>
     :root {
       --green: #103c2d;
-      --green2: #1b6046;
       --lime: #d8f36a;
       --cream: #f7f8f1;
       --text: #18271f;
       --muted: #68756d;
-      --white: #ffffff;
     }
 
     * { box-sizing: border-box; }
@@ -30,8 +28,6 @@
       color: var(--text);
       line-height: 1.6;
     }
-
-    a { color: inherit; }
 
     .container {
       width: min(1120px, 92%);
@@ -55,14 +51,13 @@
     .logo {
       font-size: 23px;
       font-weight: 800;
-      letter-spacing: -0.7px;
     }
 
     .logo span { color: var(--lime); }
 
     .nav a {
+      color: white;
       text-decoration: none;
-      font-size: 14px;
     }
 
     .hero {
@@ -70,7 +65,7 @@
         radial-gradient(ellipse at 90% 10%, #327354 0, transparent 40%),
         linear-gradient(135deg, #103c2d, #174b37);
       color: white;
-      padding: 65px 0 75px;
+      padding: 55px 0 65px;
     }
 
     .eyebrow {
@@ -83,89 +78,38 @@
 
     h1 {
       font-size: clamp(34px, 7vw, 58px);
-      line-height: 1.08;
-      letter-spacing: -1.8px;
+      line-height: 1.1;
       max-width: 720px;
       margin: 14px 0;
     }
 
-    .hero p {
+    .hero > .container > p {
       color: #e0eae2;
-      max-width: 600px;
+      max-width: 620px;
     }
 
-    .search-box {
+    .widget-shell {
       background: white;
       color: var(--text);
-      padding: 22px;
+      padding: 18px;
       border-radius: 18px;
       margin-top: 28px;
       box-shadow: 0 14px 35px #061c1430;
+      overflow: hidden;
     }
 
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    label {
-      display: block;
-      font-weight: bold;
-      font-size: 13px;
-      margin-bottom: 6px;
-    }
-
-    input, select {
-      width: 100%;
-      padding: 13px;
-      border: 1px solid #d8e0d9;
-      border-radius: 9px;
-      background: white;
-      color: var(--text);
-      font: inherit;
-    }
-
-    button {
-      border: 0;
-      border-radius: 9px;
-      background: var(--lime);
-      color: var(--green);
-      padding: 14px 20px;
-      font-size: 15px;
-      font-weight: 800;
-      cursor: pointer;
-    }
-
-    button:hover { filter: brightness(.96); }
-
-    .search-button {
-      width: 100%;
-      margin-top: 15px;
-    }
-
-    .notice {
-      font-size: 12px;
+    .widget-intro {
       color: var(--muted);
-      margin: 12px 0 0;
+      font-size: 13px;
+      margin: 0 0 12px;
     }
 
     section { padding: 48px 0; }
-
-    .section-heading {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin-bottom: 22px;
-    }
 
     h2 {
       font-size: clamp(25px, 4vw, 35px);
       line-height: 1.2;
       margin: 0 0 8px;
-      letter-spacing: -0.7px;
     }
 
     .subheading {
@@ -177,20 +121,21 @@
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 16px;
+      margin-top: 24px;
     }
 
     .airport-card {
       min-height: 190px;
       border-radius: 15px;
-      overflow: hidden;
       position: relative;
-      background: #245b43;
+      overflow: hidden;
+      isolation: isolate;
       color: white;
+      padding: 20px;
       display: flex;
       flex-direction: column;
       justify-content: end;
-      padding: 20px;
-      isolation: isolate;
+      background: #245b43;
     }
 
     .airport-card::before {
@@ -206,14 +151,32 @@
       position: absolute;
       inset: 0;
       z-index: -2;
-      background: var(--airport-bg, linear-gradient(135deg, #174d38, #648a54));
+      background: var(--airport-bg);
     }
 
-    .airport-card:nth-child(2) { --airport-bg: linear-gradient(135deg, #73513a, #c49b66); }
-    .airport-card:nth-child(3) { --airport-bg: linear-gradient(135deg, #155a50, #80a778); }
-    .airport-card:nth-child(4) { --airport-bg: linear-gradient(135deg, #344f67, #9aafbd); }
-    .airport-card:nth-child(5) { --airport-bg: linear-gradient(135deg, #154b45, #78a79b); }
-    .airport-card:nth-child(6) { --airport-bg: linear-gradient(135deg, #72543a, #c2a17a); }
+    .airport-card:nth-child(1) {
+      --airport-bg: linear-gradient(135deg, #174d38, #648a54);
+    }
+
+    .airport-card:nth-child(2) {
+      --airport-bg: linear-gradient(135deg, #73513a, #c49b66);
+    }
+
+    .airport-card:nth-child(3) {
+      --airport-bg: linear-gradient(135deg, #155a50, #80a778);
+    }
+
+    .airport-card:nth-child(4) {
+      --airport-bg: linear-gradient(135deg, #344f67, #9aafbd);
+    }
+
+    .airport-card:nth-child(5) {
+      --airport-bg: linear-gradient(135deg, #154b45, #78a79b);
+    }
+
+    .airport-card:nth-child(6) {
+      --airport-bg: linear-gradient(135deg, #72543a, #c2a17a);
+    }
 
     .airport-card h3 {
       margin: 0 0 4px;
@@ -226,84 +189,19 @@
       color: #eef5ef;
     }
 
-    .airport-card button {
+    .airport-card a {
+      display: inline-block;
       align-self: flex-start;
+      background: var(--lime);
+      color: var(--green);
+      text-decoration: none;
+      border-radius: 9px;
       padding: 10px 14px;
       font-size: 13px;
-    }
-
-    .results-section { background: #edf1e9; }
-
-    .results-controls {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin: 20px 0;
-    }
-
-    .results-controls select {
-      width: auto;
-      min-width: 150px;
-    }
-
-    .car-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .car-card {
-      background: white;
-      border: 1px solid #e2e7df;
-      border-radius: 15px;
-      padding: 20px;
-    }
-
-    .car-icon {
-      font-size: 43px;
-      background: #f1f5e9;
-      border-radius: 12px;
-      padding: 12px;
-      text-align: center;
-      margin-bottom: 15px;
-    }
-
-    .car-card h3 { margin: 0 0 5px; }
-
-    .car-card p {
-      color: var(--muted);
-      margin: 4px 0;
-      font-size: 14px;
-    }
-
-    .price {
-      font-size: 25px;
-      font-weight: 800;
-      color: var(--green);
-      margin: 15px 0 3px;
-    }
-
-    .price small {
-      font-size: 12px;
-      font-weight: normal;
-      color: var(--muted);
-    }
-
-    .car-card button {
-      width: 100%;
-      margin-top: 13px;
-    }
-
-    .demo-label {
-      display: inline-block;
-      background: #fff1ce;
-      color: #795313;
-      border-radius: 5px;
-      padding: 3px 7px;
-      font-size: 11px;
       font-weight: bold;
-      margin-top: 8px;
     }
+
+    .airport-card a:hover { filter: brightness(.95); }
 
     .info-grid {
       display: grid;
@@ -350,32 +248,29 @@
       flex-wrap: wrap;
     }
 
-    footer a { color: var(--lime); }
-
     .footer-links {
       display: flex;
       gap: 18px;
       flex-wrap: wrap;
     }
 
+    footer a { color: var(--lime); }
+
     @media (max-width: 760px) {
-      .airport-grid, .car-grid, .info-grid {
+      .airport-grid, .info-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .hero { padding: 48px 0 55px; }
+      .hero { padding: 45px 0 55px; }
     }
 
     @media (max-width: 500px) {
-      .airport-grid, .car-grid, .info-grid, .form-grid {
+      .airport-grid, .info-grid {
         grid-template-columns: 1fr;
       }
 
       .airport-card { min-height: 170px; }
-
-      .search-box { padding: 16px; }
-
-      .results-controls select { width: 100%; }
+      .widget-shell { padding: 12px; }
     }
   </style>
 </head>
@@ -392,202 +287,165 @@
     <section class="hero">
       <div class="container">
         <div class="eyebrow">Your journey starts here</div>
+
         <h1>Find your next rental car in Morocco.</h1>
+
         <p>
-          Explore car rental options at Morocco's major airports.
-          Choose your destination, travel dates and preferred vehicle.
+          Compare car rental options for Morocco's major airports.
+          Search for available vehicles and explore offers through our booking partner.
         </p>
 
-        <div class="search-box" id="search">
-          <form id="searchForm">
-            <div class="form-grid">
-              <div>
-                <label for="airport">Airport pickup</label>
-                <select id="airport" required>
-                  <option value="Marrakech Menara Airport">Marrakech Menara (RAK)</option>
-                  <option value="Casablanca Mohammed V Airport">Casablanca Mohammed V (CMN)</option>
-                  <option value="Agadir Al Massira Airport">Agadir Al Massira (AGA)</option>
-                  <option value="Rabat-Salé Airport">Rabat-Salé (RBA)</option>
-                  <option value="Tangier Ibn Battouta Airport">Tangier Ibn Battouta (TNG)</option>
-                  <option value="Fes-Saïss Airport">Fes-Saïss (FEZ)</option>
-                </select>
-              </div>
+        <div class="widget-shell" id="booking">
+          <p class="widget-intro">
+            Search and compare car rental offers using DiscoverCars.
+          </p>
 
-              <div>
-                <label for="category">Car preference</label>
-                <select id="category">
-                  <option value="all">All car types</option>
-                  <option value="Economy">Economy</option>
-                  <option value="Automatic">Automatic</option>
-                  <option value="SUV">SUV</option>
-                </select>
-              </div>
-
-              <div>
-                <label for="pickup">Pickup date</label>
-                <input type="date" id="pickup" required>
-              </div>
-
-              <div>
-                <label for="return">Return date</label>
-                <input type="date" id="return" required>
-              </div>
-
-              <div>
-                <label for="age">Driver age</label>
-                <select id="age">
-                  <option value="21">21–24</option>
-                  <option value="25" selected>25–69</option>
-                  <option value="70">70+</option>
-                </select>
-              </div>
-            </div>
-
-            <button class="search-button" type="submit">Explore car options →</button>
-            <p class="notice">
-              These are demonstration listings, not live offers or confirmed prices.
-            </p>
-          </form>
+          <div>
+            <script
+              id="dchwidget"
+              src="https://www.discovercars.com/widget.js?v1"
+              data-dev-env="com"
+              data-location=""
+              data-utm-source="AtlasDriveMorocco"
+              data-utm-medium="widget"
+              data-aff-code="a_aid"
+              data-autocomplete="on"
+              data-style-submit-bg-color="#007ac2"
+              data-style-submit-font-color="#ffffff"
+              data-style-form-bg-color="#fcd34d"
+              data-style-form-font-color="#000000"
+              data-style-submit-text="Search now"
+              data-style-title-color="#000000"
+              data-title-text="Search and compare car rentals and save up to 70%!"
+              async="async"
+              data-style_rounded_corners="on"
+              data-layout_benefits="on"
+              data-layout_description="on"
+              data-layout_description_text="We've selected the best deals from our car rental partners."
+              data-layout_logo_style="on dark"
+              data-layout_powered_by="on"
+              data-layout_style_form_bg_color="#007ac2"
+              data-layout_title="on">
+            </script>
+          </div>
         </div>
       </div>
     </section>
 
     <section id="airports">
       <div class="container">
-        <div class="section-heading">
-          <div>
-            <h2>Choose your airport</h2>
-            <p class="subheading">Start with one of Morocco's major airport destinations.</p>
-          </div>
-        </div>
+        <h2>Choose your airport</h2>
+        <p class="subheading">
+          Start your journey at one of Morocco's major airport destinations.
+        </p>
 
         <div class="airport-grid">
           <article class="airport-card">
             <h3>Marrakech</h3>
             <p>Menara Airport · RAK</p>
-            <button onclick="chooseAirport('Marrakech Menara Airport')">Explore cars →</button>
+            <a href="https://www.discovercars.com/?a_aid=AtlasDriveMorocco"
+               target="_blank" rel="noopener noreferrer">Search cars →</a>
           </article>
 
           <article class="airport-card">
             <h3>Casablanca</h3>
             <p>Mohammed V Airport · CMN</p>
-            <button onclick="chooseAirport('Casablanca Mohammed V Airport')">Explore cars →</button>
+            <a href="https://www.discovercars.com/?a_aid=AtlasDriveMorocco"
+               target="_blank" rel="noopener noreferrer">Search cars →</a>
           </article>
 
           <article class="airport-card">
             <h3>Agadir</h3>
             <p>Al Massira Airport · AGA</p>
-            <button onclick="chooseAirport('Agadir Al Massira Airport')">Explore cars →</button>
+            <a href="https://www.discovercars.com/?a_aid=AtlasDriveMorocco"
+               target="_blank" rel="noopener noreferrer">Search cars →</a>
           </article>
 
           <article class="airport-card">
             <h3>Rabat</h3>
             <p>Rabat-Salé Airport · RBA</p>
-            <button onclick="chooseAirport('Rabat-Salé Airport')">Explore cars →</button>
+            <a href="https://www.discovercars.com/?a_aid=AtlasDriveMorocco"
+               target="_blank" rel="noopener noreferrer">Search cars →</a>
           </article>
 
           <article class="airport-card">
             <h3>Tangier</h3>
             <p>Ibn Battouta Airport · TNG</p>
-            <button onclick="chooseAirport('Tangier Ibn Battouta Airport')">Explore cars →</button>
+            <a href="https://www.discovercars.com/?a_aid=AtlasDriveMorocco"
+               target="_blank" rel="noopener noreferrer">Search cars →</a>
           </article>
 
           <article class="airport-card">
             <h3>Fes</h3>
             <p>Fes-Saïss Airport · FEZ</p>
-            <button onclick="chooseAirport('Fes-Saïss Airport')">Explore cars →</button>
+            <a href="https://www.discovercars.com/?a_aid=AtlasDriveMorocco"
+               target="_blank" rel="noopener noreferrer">Search cars →</a>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="results-section" id="results">
+    <section style="background:#edf1e9">
       <div class="container">
-        <div class="section-heading">
-          <div>
-            <h2 id="resultsTitle">Example car options</h2>
-            <p class="subheading" id="resultsSubtitle">
-              Sample categories to help you explore.
-            </p>
-          </div>
-        </div>
-
-        <div class="results-controls">
-          <select id="filterCategory" aria-label="Filter by car type">
-            <option value="all">All car types</option>
-            <option value="Economy">Economy</option>
-            <option value="Automatic">Automatic</option>
-            <option value="SUV">SUV</option>
-          </select>
-
-          <select id="sortPrice" aria-label="Sort cars by price">
-            <option value="low">Lowest example price</option>
-            <option value="high">Highest example price</option>
-          </select>
-        </div>
-
-        <div class="car-grid" id="carGrid"></div>
-
-        <p class="notice">
-          Important: the vehicles and prices below are fictional examples for website
-          demonstration. They are not available for booking and are not quotations
-          from rental companies.
-        </p>
-      </div>
-    </section>
-
-    <section>
-      <div class="container">
-        <h2>Car rental made simpler</h2>
+        <h2>How it works</h2>
         <p class="subheading">
-          A straightforward starting point for planning your trip around Morocco.
+          Search offers, compare rental conditions and check the final price before booking.
         </p>
 
         <div class="info-grid">
           <article class="info-card">
-            <h3>✈️ Airport destinations</h3>
-            <p>Explore car rental options around six major Moroccan airports.</p>
+            <h3>✈️ Choose an airport</h3>
+            <p>Start with your Moroccan destination and travel plans.</p>
           </article>
 
           <article class="info-card">
-            <h3>🚗 Compare categories</h3>
-            <p>Explore economy, automatic and SUV categories in one place.</p>
+            <h3>🚗 Compare offers</h3>
+            <p>Use the DiscoverCars search tool to review available offers and vehicle categories.</p>
           </article>
 
           <article class="info-card">
-            <h3>🧭 Plan your trip</h3>
-            <p>Choose your pickup location and travel dates before comparing real offers.</p>
+            <h3>🧭 Check the details</h3>
+            <p>Review the total price, deposit, insurance and rental terms before confirming.</p>
           </article>
         </div>
 
         <div class="affiliate-box">
           <strong>Affiliate disclosure:</strong>
           AtlasDrive Morocco may earn a commission when you book through certain
-          partner links, at no extra cost to you. Prices and availability are subject
-          to the rental provider's terms. Affiliate bookings are not yet enabled on
-          this demonstration website.
+          partner links, at no extra cost to you. Prices and availability are set
+          by the booking partner and rental providers and may change. Reservations
+          and payments are handled through the booking partner or rental provider.
         </div>
       </div>
     </section>
 
-    <section style="padding-top:0">
+    <section>
       <div class="container">
         <h2>Frequently asked questions</h2>
 
         <div class="info-grid">
           <article class="info-card">
-            <h3>Are these live prices?</h3>
-            <p>No. The prices and vehicles shown on this version are demonstration examples only.</p>
+            <h3>Are prices guaranteed?</h3>
+            <p>
+              No. Check current availability, the final price, deposit requirements
+              and rental conditions before booking.
+            </p>
           </article>
 
           <article class="info-card">
-            <h3>Can I book a car here?</h3>
-            <p>Not yet. A real booking or affiliate partner integration must be added first.</p>
+            <h3>Can I book on AtlasDrive?</h3>
+            <p>
+              The search widget is provided by DiscoverCars. Your reservation
+              is completed through the booking partner or rental provider.
+            </p>
           </article>
 
           <article class="info-card">
-            <h3>How does AtlasDrive earn money?</h3>
-            <p>The planned business model is to earn commissions through approved car rental affiliate partners.</p>
+            <h3>Does it cost extra to use our links?</h3>
+            <p>
+              AtlasDrive may earn a commission on eligible bookings.
+              Any booking price and terms are shown by the booking partner.
+            </p>
           </article>
         </div>
       </div>
@@ -604,137 +462,14 @@
 
       <div class="footer-links">
         <a href="privacy.html">Privacy Policy</a>
-        <a href="#search">Search cars</a>
+        <a href="#booking">Search cars</a>
         <a href="#airports">Airports</a>
       </div>
     </div>
   </footer>
 
   <script>
-    const cars = [
-      {
-        name: "Economy Compact",
-        category: "Economy",
-        icon: "🚗",
-        price: 240,
-        details: "Small car · Manual · Example only"
-      },
-      {
-        name: "Automatic Compact",
-        category: "Automatic",
-        icon: "🚙",
-        price: 390,
-        details: "Compact car · Automatic · Example only"
-      },
-      {
-        name: "Family SUV",
-        category: "SUV",
-        icon: "🚘",
-        price: 520,
-        details: "SUV · Extra luggage space · Example only"
-      }
-    ];
-
-    const airportSelect = document.getElementById("airport");
-    const categorySelect = document.getElementById("category");
-    const filterSelect = document.getElementById("filterCategory");
-    const sortSelect = document.getElementById("sortPrice");
-    const carGrid = document.getElementById("carGrid");
-
-    function chooseAirport(airport) {
-      airportSelect.value = airport;
-      document.getElementById("search").scrollIntoView({ behavior: "smooth" });
-    }
-
-    function renderCars() {
-      const selectedCategory = filterSelect.value;
-      const sortOrder = sortSelect.value;
-
-      let filtered = cars.filter(car =>
-        selectedCategory === "all" || car.category === selectedCategory
-      );
-
-      filtered.sort((a, b) =>
-        sortOrder === "low" ? a.price - b.price : b.price - a.price
-      );
-
-      carGrid.innerHTML = filtered.map(car => `
-        <article class="car-card">
-          <div class="car-icon">${car.icon}</div>
-          <h3>${car.name}</h3>
-          <p>${car.details}</p>
-          <div class="price">
-            MAD ${car.price}
-            <small>/ example day</small>
-          </div>
-          <span class="demo-label">DEMO PRICE — NOT A LIVE OFFER</span>
-          <button type="button" onclick="showDemoMessage()">
-            Explore this category
-          </button>
-        </article>
-      `).join("");
-    }
-
-    function showDemoMessage() {
-      alert(
-        "These are demonstration listings only. Live offers and booking links will be added after a rental affiliate partner is connected."
-      );
-    }
-
-    document.getElementById("searchForm").addEventListener("submit", function(event) {
-      event.preventDefault();
-
-      const pickup = document.getElementById("pickup").value;
-      const returnDate = document.getElementById("return").value;
-
-      if (!pickup || !returnDate) {
-        alert("Please select your pickup and return dates.");
-        return;
-      }
-
-      if (returnDate <= pickup) {
-        alert("Your return date must be after your pickup date.");
-        return;
-      }
-
-      filterSelect.value = categorySelect.value;
-      document.getElementById("resultsTitle").textContent =
-        "Example cars at " + airportSelect.value;
-
-      document.getElementById("resultsSubtitle").textContent =
-        "Dates selected: " + pickup + " to " + returnDate +
-        ". These are demonstration listings, not live availability.";
-
-      renderCars();
-      document.getElementById("results").scrollIntoView({ behavior: "smooth" });
-    });
-
-    filterSelect.addEventListener("change", renderCars);
-    sortSelect.addEventListener("change", renderCars);
-
     document.getElementById("year").textContent = new Date().getFullYear();
-
-    const today = new Date();
-    const tomorrow = new Date(today);
-    tomorrow.setDate(today.getDate() + 1);
-
-    const formatDate = date => {
-      const year = date.getFullYear();
-      const month = String(date.getMonth() + 1).padStart(2, "0");
-      const day = String(date.getDate()).padStart(2, "0");
-      return `${year}-${month}-${day}`;
-    };
-
-    document.getElementById("pickup").min = formatDate(today);
-    document.getElementById("pickup").value = formatDate(tomorrow);
-
-    const dayAfter = new Date(tomorrow);
-    dayAfter.setDate(tomorrow.getDate() + 1);
-
-    document.getElementById("return").min = formatDate(dayAfter);
-    document.getElementById("return").value = formatDate(dayAfter);
-
-    renderCars();
   </script>
 </body>
 </html>
