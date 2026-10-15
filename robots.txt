@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://omarham90.github.io/atlasdrive-morocco/sitemap.xml
